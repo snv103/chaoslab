@@ -1,6 +1,6 @@
 package main
 
-import "fmt"
+import ("fmt";"sort")
 
 type Event struct {
 	At int
@@ -8,6 +8,11 @@ type Event struct {
 }
 
 func main() {
-	e := Event{At: 20, Name: "timer fires"}
-	fmt.Println(e.At, e.Name)
+	events := []Event {
+		{At: 50, Name: "message arrives"}, {At: 35, Name: "time fires"}, {At: 20, Name: "node crashes"},
+	}
+	sort.Slice(events, func(i, j int) bool {
+		return events[i].At < events[j].At
+	})
+	fmt.Println(events)
 }
